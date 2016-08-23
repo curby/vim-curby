@@ -6,7 +6,7 @@
 "   If buffer is modified, file name is always red
 "   Paste always makes airline_a red
 "   Replace changes airline_a *and* airline_z to red
-"   Filename maintains vertical alignment when inactive (set:
+"   Filename maintains consistent vertical alignment when inactive (set:
 "     let g:airline_inactive_collapse=0
 "   )
 "
@@ -17,9 +17,12 @@
 " orange is for replace
 " white is for paste toggle (TODO)
 " red filename on modification
-"
 
-" Individual color palette
+
+
+"""
+""" Individual color definitions
+"""
 let s:gui_dark_gray     = '#303030'
 let s:cterm_dark_gray   = 236
 let s:gui_med_gray_lo   = '#3a3a3a'
@@ -48,7 +51,11 @@ let s:cterm_pink        = 182
 
 let g:airline#themes#cubblegum#palette = {}
 
-" Color pairing palette
+
+
+"""
+""" Color pairing definitions
+"""
 let s:BlueBg   = [s:gui_dark_gray,  s:gui_blue,        s:cterm_dark_gray,  s:cterm_blue,        '']
 let s:GreenBg  = [s:gui_dark_gray,  s:gui_green,       s:cterm_dark_gray,  s:cterm_green,       '']
 let s:YellowBg = [s:gui_dark_gray,  s:gui_yellow,      s:cterm_dark_gray,  s:cterm_yellow,      '']
@@ -66,6 +73,11 @@ let s:RedMdBg  = [s:gui_red,        s:gui_med_gray_lo, s:cterm_red,        s:cte
 let s:RedDkBg  = [s:gui_red,        s:gui_dark_gray,   s:cterm_red,        s:cterm_dark_gray,   '']
 let s:Pink     = [s:gui_pink,       s:gui_med_gray_hi, s:cterm_pink,       s:cterm_med_gray_hi, '']
 
+
+
+"""
+""" Mode-color mappings
+"""
 " Normal mode
 let g:airline#themes#cubblegum#palette.normal = airline#themes#generate_color_map(s:BlueBg, s:MdGrayBg, s:DkGrayBg)
 let g:airline#themes#cubblegum#palette.normal_modified = {
@@ -95,52 +107,44 @@ let g:airline#themes#cubblegum#palette.inactive          = airline#themes#genera
 let g:airline#themes#cubblegum#palette.inactive_modified = g:airline#themes#cubblegum#palette.normal_modified
 "let g:airline#themes#cubblegum#palette.inactive_paste    = g:airline#themes#cubblegum#palette.normal_paste
 
-" Warning widget
-" Proxy variable to easily change colors for all modes
-let s:warnColors = s:RedBg
 
-let g:airline#themes#cubblegum#palette.normal.airline_warning           = s:warnColors
-let g:airline#themes#cubblegum#palette.normal_modified.airline_warning  = s:warnColors
-let g:airline#themes#cubblegum#palette.normal_paste.airline_warning     = s:warnColors
-let g:airline#themes#cubblegum#palette.insert.airline_warning           = s:warnColors
-let g:airline#themes#cubblegum#palette.insert_modified.airline_warning  = s:warnColors
-let g:airline#themes#cubblegum#palette.insert_paste.airline_warning     = s:warnColors
-let g:airline#themes#cubblegum#palette.visual.airline_warning           = s:warnColors
-let g:airline#themes#cubblegum#palette.visual_modified.airline_warning  = s:warnColors
-let g:airline#themes#cubblegum#palette.visual_paste.airline_warning     = s:warnColors
-let g:airline#themes#cubblegum#palette.replace.airline_warning          = s:warnColors
-let g:airline#themes#cubblegum#palette.replace_modified.airline_warning = s:warnColors
-let g:airline#themes#cubblegum#palette.replace_paste.airline_warning    = s:warnColors
+
+"""
+""" Widget-color mappings
+"""
+" Warning widget
+let g:airline#themes#cubblegum#palette.normal.airline_warning           = s:RedBg
+let g:airline#themes#cubblegum#palette.normal_modified.airline_warning  = s:RedBg
+let g:airline#themes#cubblegum#palette.normal_paste.airline_warning     = s:RedBg
+let g:airline#themes#cubblegum#palette.insert.airline_warning           = s:RedBg
+let g:airline#themes#cubblegum#palette.insert_modified.airline_warning  = s:RedBg
+let g:airline#themes#cubblegum#palette.insert_paste.airline_warning     = s:RedBg
+let g:airline#themes#cubblegum#palette.visual.airline_warning           = s:RedBg
+let g:airline#themes#cubblegum#palette.visual_modified.airline_warning  = s:RedBg
+let g:airline#themes#cubblegum#palette.visual_paste.airline_warning     = s:RedBg
+let g:airline#themes#cubblegum#palette.replace.airline_warning          = s:RedBg
+let g:airline#themes#cubblegum#palette.replace_modified.airline_warning = s:RedBg
+let g:airline#themes#cubblegum#palette.replace_paste.airline_warning    = s:RedBg
 " Nothing for palette.inactive because inactive viewports don't show warning
 " widget
 
 " Tabline widget
 " Names from ~/.vim-plug/vim-airline/autoload/airline/extensions/tabline.vim
 let g:airline#themes#cubblegum#palette.tabline = {}
-let g:airline#themes#cubblegum#palette.tabline.airline_tab = s:MdGrayBg
-let g:airline#themes#cubblegum#palette.tabline.airline_tabsel = s:LtGrayBg
-let g:airline#themes#cubblegum#palette.tabline.airline_tabfill = s:DkGrayBg
-let g:airline#themes#cubblegum#palette.tabline.airline_tabtype = s:Blue
-let g:airline#themes#cubblegum#palette.tabline.airline_tabmod = s:RedLtBg
+let g:airline#themes#cubblegum#palette.tabline.airline_tab          = s:MdGrayBg
+let g:airline#themes#cubblegum#palette.tabline.airline_tabsel       = s:LtGrayBg
+let g:airline#themes#cubblegum#palette.tabline.airline_tabfill      = s:DkGrayBg
+let g:airline#themes#cubblegum#palette.tabline.airline_tabtype      = s:Blue
+let g:airline#themes#cubblegum#palette.tabline.airline_tabmod       = s:RedLtBg
 let g:airline#themes#cubblegum#palette.tabline.airline_tabmod_unsel = s:RedMdBg
-let g:airline#themes#cubblegum#palette.tabline.airline_tabhid = s:DkGrayBg
+let g:airline#themes#cubblegum#palette.tabline.airline_tabhid       = s:DkGrayBg
 
-" Wtf?
+" What are these used for?
 "let g:airline#themes#cubblegum#palette.tabline.airline_tabsel_right
 "let g:airline#themes#cubblegum#palette.tabline.airline_tab_right
 "let g:airline#themes#cubblegum#palette.tabline.airline_tabmod_right
 "let g:airline#themes#cubblegum#palette.tabline.airline_tabhid_right
 "let g:airline#themes#cubblegum#palette.tabline.airline_tabmod_unsel_right
-
-
-
-
-
-
-
-
-
-
 
 " CtrlP
 if !get(g:, 'loaded_ctrlp', 0)
